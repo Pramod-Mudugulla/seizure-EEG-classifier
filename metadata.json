@@ -1,0 +1,5 @@
+{
+  "name": "NeuroDetect",
+  "description": "A high-performance EEG seizure classification system with a minimal Nike-style design, featuring signal analysis, frequency band detection, and real-time classification insights.",
+  "requestFramePermissions": []
+}
