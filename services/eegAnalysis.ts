@@ -21,6 +21,7 @@ export const analyzeEEGImage = async (base64Image: string): Promise<EEGAnalysisR
   }
 
   const data = await response.json();
+  console.log('Gemini API Response:', data);
 
   return {
     prediction: data.prediction === 'Seizure' ? PredictionLabel.SEIZURE : PredictionLabel.NON_SEIZURE,
@@ -33,6 +34,12 @@ export const analyzeEEGImage = async (base64Image: string): Promise<EEGAnalysisR
       std: data.stats.std,
       entropy: data.stats.entropy,
     },
+    frequencyAnalysis: data.frequencyAnalysis,
+    signalMetrics: data.signalMetrics,
+    findings: data.findings,
+    riskIndicators: data.riskIndicators,
+    recommendations: data.recommendations,
+    seizureClassification: data.seizureClassification,
   };
 };
 
@@ -58,6 +65,7 @@ export const analyzeEEGSignal = async (data: EEGData): Promise<EEGAnalysisResult
   }
 
   const result = await response.json();
+  console.log('CSV Analysis Response:', result);
 
   return {
     prediction: result.prediction === 'Seizure' ? PredictionLabel.SEIZURE : PredictionLabel.NON_SEIZURE,
@@ -70,6 +78,12 @@ export const analyzeEEGSignal = async (data: EEGData): Promise<EEGAnalysisResult
       std: result.stats.std,
       entropy: result.stats.entropy,
     },
+    frequencyAnalysis: result.frequencyAnalysis,
+    signalMetrics: result.signalMetrics,
+    findings: result.findings,
+    riskIndicators: result.riskIndicators,
+    recommendations: result.recommendations,
+    seizureClassification: result.seizureClassification,
   };
 };
 
