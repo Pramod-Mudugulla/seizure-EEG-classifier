@@ -98,7 +98,7 @@ const PrerequisitesPage: React.FC = () => {
       visual: 'Higher peaks = stronger electrical signals',
       normal: '10 - 100 μV typical for awake state',
       abnormal: ['>300 μV = very abnormal (possible seizure)',
-                 '<5 μV = too quiet (poor signal or brain issue)'],
+        '<5 μV = too quiet (poor signal or brain issue)'],
       icon: '📈'
     },
     {
@@ -109,7 +109,7 @@ const PrerequisitesPage: React.FC = () => {
       visual: 'Wavy = slow (Delta/Theta), Squiggly = fast (Beta/Gamma)',
       normal: '1 - 30 Hz normal in adults',
       abnormal: ['<0.5 Hz = severe abnormality',
-                 '>100 Hz = possible seizure activity'],
+        '>100 Hz = possible seizure activity'],
       icon: '⏱️'
     },
     {
@@ -120,7 +120,7 @@ const PrerequisitesPage: React.FC = () => {
       visual: 'High STD = wide, tall waves | Low STD = small, flat waves',
       normal: '20 - 60 μV for normal EEG',
       abnormal: ['>100 μV = high variability (possible seizure)',
-                 '<5 μV = monotonous signal (concerning)'],
+        '<5 μV = monotonous signal (concerning)'],
       icon: '📊'
     },
     {
@@ -131,7 +131,7 @@ const PrerequisitesPage: React.FC = () => {
       visual: 'Chaotic waves = high entropy | Regular pattern = low entropy',
       normal: '0.4 - 0.8 (reasonably random)',
       abnormal: ['<0.2 = highly regular (abnormal)',
-                 '>0.95 = pure noise (poor signal quality)'],
+        '>0.95 = pure noise (poor signal quality)'],
       icon: '🎲'
     },
     {
@@ -142,7 +142,7 @@ const PrerequisitesPage: React.FC = () => {
       visual: 'Alpha dominant = 8-12 Hz centroid | Gamma dominant = 50+ Hz centroid',
       normal: '8 - 20 Hz for relaxed awake state',
       abnormal: ['>50 Hz = abnormally fast (possible seizure)',
-                 '<5 Hz = abnormally slow (possible abnormality)'],
+        '<5 Hz = abnormally slow (possible abnormality)'],
       icon: '🎯'
     },
     {
@@ -153,7 +153,7 @@ const PrerequisitesPage: React.FC = () => {
       visual: 'High SNR = clear waves | Low SNR = blurry, noisy signal',
       normal: '>5 dB is acceptable',
       abnormal: ['<0 dB = noise > signal (unusable)',
-                 '>20 dB = excellent quality (ideal)'],
+        '>20 dB = excellent quality (ideal)'],
       icon: '📡'
     }
   ];
@@ -225,43 +225,31 @@ const PrerequisitesPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 p-4 md:p-8">
+    <div className="min-h-screen bg-white pt-32 pb-20 px-6">
       {/* Header */}
-      <div className="max-w-6xl mx-auto mb-12">
-        <div className="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl p-8 border-2 border-blue-300 shadow-lg">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center text-5xl shadow-md">
-              🧠
-            </div>
-            <div>
-              <h1 className="text-4xl font-black text-gray-900">Comprehensive EEG & Seizure Guide</h1>
-              <p className="text-lg text-gray-700 mt-2 font-bold">
-                From Basics to Advanced Analysis - Everything You Need to Know
-              </p>
-            </div>
-          </div>
-          <div className="mt-6 p-4 bg-white rounded-lg border-2 border-blue-200">
-            <p className="text-sm text-gray-800 leading-relaxed">
-              Welcome to NeuroDetect's comprehensive learning center. Whether you're a healthcare professional, student, or curious learner, this guide will take you through seizure types, EEG fundamentals, and how our AI system analyzes brain activity. Start with seizure basics and progress through advanced topics.
-            </p>
-          </div>
+      <div className="max-w-5xl mx-auto mb-24">
+        <h1 className="text-6xl md:text-8xl font-black uppercase leading-none tracking-tighter mb-6">
+          Learn EEG.
+        </h1>
+        <p className="text-lg md:text-xl text-gray-500 max-w-2xl font-medium mb-12">
+          Comprehensive guide to seizures, EEG fundamentals, and brain wave analysis. From basics to clinical interpretation.
+        </p>
+        <div className="border-t border-gray-200 pt-8">
+          <p className="text-sm text-gray-400 uppercase tracking-widest font-bold">Research Use Only</p>
         </div>
       </div>
 
       {/* Main Content Sections */}
-      <div className="max-w-6xl mx-auto space-y-8">
+      <div className="max-w-5xl mx-auto space-y-12">
 
         {/* Section 1: What is a Seizure? */}
-        <section className="bg-white rounded-2xl p-8 border-2 border-red-300 shadow-lg overflow-hidden">
+        <section className="border-b border-gray-200 py-6">
           <button
             onClick={() => setExpandedSection(expandedSection === 'seizures' ? null : 'seizures')}
-            className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg hover:from-red-100 hover:to-orange-100 transition"
+            className="w-full flex items-center justify-between py-4 hover:opacity-70 transition"
           >
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">⚡</span>
-              <h2 className="text-2xl font-black text-gray-900">What is a Seizure?</h2>
-            </div>
-            <span className="text-2xl font-bold">{expandedSection === 'seizures' ? '▼' : '▶'}</span>
+            <h2 className="text-2xl font-black uppercase tracking-tight">What is a Seizure?</h2>
+            <span className="text-2xl font-bold">{expandedSection === 'seizures' ? '−' : '+'}</span>
           </button>
 
           {expandedSection === 'seizures' && (
@@ -359,16 +347,13 @@ const PrerequisitesPage: React.FC = () => {
         </section>
 
         {/* Section 2: Types of Seizures (ILAE Classification) */}
-        <section className="bg-white rounded-2xl p-8 border-2 border-purple-300 shadow-lg">
+        <section className="border-b border-gray-200 py-6">
           <button
             onClick={() => setExpandedSection(expandedSection === 'types' ? null : 'types')}
-            className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg hover:from-purple-100 hover:to-pink-100 transition"
+            className="w-full flex items-center justify-between py-4 hover:opacity-70 transition"
           >
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">🏥</span>
-              <h2 className="text-2xl font-black text-gray-900">Types of Seizures (ILAE 2017)</h2>
-            </div>
-            <span className="text-2xl font-bold">{expandedSection === 'types' ? '▼' : '▶'}</span>
+            <h2 className="text-2xl font-black uppercase tracking-tight">Types of Seizures (ILAE 2017)</h2>
+            <span className="text-2xl font-bold">{expandedSection === 'types' ? '−' : '+'}</span>
           </button>
 
           {expandedSection === 'types' && (
@@ -502,16 +487,13 @@ const PrerequisitesPage: React.FC = () => {
         </section>
 
         {/* Section 3: What is EEG? */}
-        <section className="bg-white rounded-2xl p-8 border-2 border-cyan-300 shadow-lg">
+        <section className="border-b border-gray-200 py-6">
           <button
             onClick={() => setExpandedSection(expandedSection === 'whateeg' ? null : 'whateeg')}
-            className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg hover:from-cyan-100 hover:to-blue-100 transition"
+            className="w-full flex items-center justify-between py-4 hover:opacity-70 transition"
           >
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">🧠</span>
-              <h2 className="text-2xl font-black text-gray-900">What is an EEG & How Does It Work?</h2>
-            </div>
-            <span className="text-2xl font-bold">{expandedSection === 'whateeg' ? '▼' : '▶'}</span>
+            <h2 className="text-2xl font-black uppercase tracking-tight">What is an EEG & How Does It Work?</h2>
+            <span className="text-2xl font-bold">{expandedSection === 'whateeg' ? '−' : '+'}</span>
           </button>
 
           {expandedSection === 'whateeg' && (
@@ -591,16 +573,13 @@ const PrerequisitesPage: React.FC = () => {
         </section>
 
         {/* Section 4: Frequency Bands Section */}
-        <section className="bg-white rounded-2xl p-8 border-2 border-purple-300 shadow-lg">
+        <section className="border-b border-gray-200 py-6">
           <button
             onClick={() => setExpandedSection(expandedSection === 'bands' ? null : 'bands')}
-            className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg hover:from-purple-100 hover:to-pink-100 transition"
+            className="w-full flex items-center justify-between py-4 hover:opacity-70 transition"
           >
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">📡</span>
-              <h2 className="text-2xl font-black text-gray-900">Brain Wave Bands (Frequency Ranges)</h2>
-            </div>
-            <span className="text-2xl font-bold">{expandedSection === 'bands' ? '▼' : '▶'}</span>
+            <h2 className="text-2xl font-black uppercase tracking-tight">Brain Wave Bands (Frequency Ranges)</h2>
+            <span className="text-2xl font-bold">{expandedSection === 'bands' ? '−' : '+'}</span>
           </button>
 
           {expandedSection === 'bands' && (
@@ -611,11 +590,10 @@ const PrerequisitesPage: React.FC = () => {
                   <button
                     key={key}
                     onClick={() => setSelectedBand(key)}
-                    className={`px-4 py-2 rounded-lg font-bold transition ${
-                      selectedBand === key
-                        ? 'bg-white border-2'
-                        : 'bg-white border-2 border-gray-300 text-gray-600'
-                    }`}
+                    className={`px-4 py-2 rounded-lg font-bold transition ${selectedBand === key
+                      ? 'bg-white border-2'
+                      : 'bg-white border-2 border-gray-300 text-gray-600'
+                      }`}
                     style={{
                       borderColor: selectedBand === key ? frequencyBands[key as keyof typeof frequencyBands].color : undefined,
                       color: selectedBand === key ? frequencyBands[key as keyof typeof frequencyBands].color : undefined
@@ -669,14 +647,14 @@ const PrerequisitesPage: React.FC = () => {
                           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                           <XAxis dataKey="time" stroke="#6b7280" />
                           <YAxis stroke="#6b7280" />
-                          <Tooltip 
+                          <Tooltip
                             contentStyle={{ backgroundColor: '#fff', border: '2px solid ' + band.color }}
                             cursor={{ stroke: band.color, strokeWidth: 2 }}
                           />
-                          <Line 
-                            type="monotone" 
-                            dataKey="value" 
-                            stroke={band.color} 
+                          <Line
+                            type="monotone"
+                            dataKey="value"
+                            stroke={band.color}
                             dot={false}
                             strokeWidth={3}
                             isAnimationActive={false}
@@ -692,16 +670,13 @@ const PrerequisitesPage: React.FC = () => {
         </section>
 
         {/* Parameters Section */}
-        <section className="bg-white rounded-2xl p-8 border-2 border-green-200 shadow-lg">
+        <section className="border-b border-gray-200 py-6">
           <button
             onClick={() => setExpandedSection(expandedSection === 'params' ? null : 'params')}
-            className="w-full flex items-center justify-between p-4 bg-green-50 rounded-lg hover:bg-green-100 transition"
+            className="w-full flex items-center justify-between py-4 hover:opacity-70 transition"
           >
-            <div className="flex items-center gap-3">
-              <span className="text-3xl">🔬</span>
-              <h2 className="text-2xl font-black text-gray-900">Key EEG Parameters</h2>
-            </div>
-            <span className="text-2xl">{expandedSection === 'params' ? '▼' : '▶'}</span>
+            <h2 className="text-2xl font-black uppercase tracking-tight">Key EEG Parameters</h2>
+            <span className="text-2xl font-bold">{expandedSection === 'params' ? '−' : '+'}</span>
           </button>
 
           {expandedSection === 'params' && (
@@ -751,16 +726,13 @@ const PrerequisitesPage: React.FC = () => {
         </section>
 
         {/* Seizure Markers Section */}
-        <section className="bg-white rounded-2xl p-8 border-2 border-red-200 shadow-lg">
+        <section className="border-b border-gray-200 py-6">
           <button
             onClick={() => setExpandedSection(expandedSection === 'seizure' ? null : 'seizure')}
-            className="w-full flex items-center justify-between p-4 bg-red-50 rounded-lg hover:bg-red-100 transition"
+            className="w-full flex items-center justify-between py-4 hover:opacity-70 transition"
           >
-            <div className="flex items-center gap-3">
-              <span className="text-3xl">⚡</span>
-              <h2 className="text-2xl font-black text-gray-900">Seizure Markers & Abnormal Patterns</h2>
-            </div>
-            <span className="text-2xl">{expandedSection === 'seizure' ? '▼' : '▶'}</span>
+            <h2 className="text-2xl font-black uppercase tracking-tight">Seizure Markers & Abnormal Patterns</h2>
+            <span className="text-2xl font-bold">{expandedSection === 'seizure' ? '−' : '+'}</span>
           </button>
 
           {expandedSection === 'seizure' && (
@@ -784,16 +756,13 @@ const PrerequisitesPage: React.FC = () => {
         </section>
 
         {/* How to Read EEG Section */}
-        <section className="bg-white rounded-2xl p-8 border-2 border-indigo-200 shadow-lg">
+        <section className="border-b border-gray-200 py-6">
           <button
             onClick={() => setExpandedSection(expandedSection === 'reading' ? null : 'reading')}
-            className="w-full flex items-center justify-between p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition"
+            className="w-full flex items-center justify-between py-4 hover:opacity-70 transition"
           >
-            <div className="flex items-center gap-3">
-              <span className="text-3xl">👁️</span>
-              <h2 className="text-2xl font-black text-gray-900">How to Read an EEG</h2>
-            </div>
-            <span className="text-2xl">{expandedSection === 'reading' ? '▼' : '▶'}</span>
+            <h2 className="text-2xl font-black uppercase tracking-tight">How to Read an EEG</h2>
+            <span className="text-2xl font-bold">{expandedSection === 'reading' ? '−' : '+'}</span>
           </button>
 
           {expandedSection === 'reading' && (
@@ -818,21 +787,21 @@ const PrerequisitesPage: React.FC = () => {
                   <div className="p-4 bg-white rounded-lg border border-indigo-200">
                     <p className="text-sm font-bold text-gray-700 mb-2">NORMAL EEG (Awake, Eyes Closed)</p>
                     <p className="text-sm text-gray-600">
-                      • Alpha waves (8-12 Hz) prominent in posterior regions<br/>
-                      • Regular, symmetric patterns<br/>
-                      • Background activity 10-50 μV<br/>
+                      • Alpha waves (8-12 Hz) prominent in posterior regions<br />
+                      • Regular, symmetric patterns<br />
+                      • Background activity 10-50 μV<br />
                       • No sharp waves or spikes
                     </p>
                   </div>
-                    <div className="p-4 bg-white rounded-lg border border-orange-200">
-                      <p className="text-sm font-bold text-gray-700 mb-2">ABNORMAL EEG (Possible Seizure Activity)</p>
-                      <p className="text-sm text-gray-600">
-                        • Spike and wave discharges (sharp 20-70ms followed by slow wave)<br/>
-                        • High amplitude bursts ({`>`}100 μV)<br/>
-                        • Abnormal rhythmic patterns (2-3 Hz repetitive)<br/>
-                        • Focal abnormalities (activity in one region)
-                      </p>
-                    </div>
+                  <div className="p-4 bg-white rounded-lg border border-orange-200">
+                    <p className="text-sm font-bold text-gray-700 mb-2">ABNORMAL EEG (Possible Seizure Activity)</p>
+                    <p className="text-sm text-gray-600">
+                      • Spike and wave discharges (sharp 20-70ms followed by slow wave)<br />
+                      • High amplitude bursts ({`>`}100 μV)<br />
+                      • Abnormal rhythmic patterns (2-3 Hz repetitive)<br />
+                      • Focal abnormalities (activity in one region)
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -888,50 +857,41 @@ const PrerequisitesPage: React.FC = () => {
         </section>
 
         {/* Quick Reference Card */}
-        <section className="bg-gradient-to-br from-blue-100 via-cyan-50 to-teal-100 rounded-2xl p-8 border-2 border-cyan-300 shadow-lg">
-          <h2 className="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3">
-            <span className="text-3xl">⚡</span>
-            Quick Reference Checklist
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg p-6 border-2 border-green-200">
-              <p className="text-lg font-black text-green-700 mb-4">✓ Signs of NORMAL EEG</p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>✅ Regular, symmetric patterns both sides</li>
-                <li>✅ 8-12 Hz alpha rhythm when eyes closed</li>
-                <li>✅ 10-50 μV amplitude (not too high, not too low)</li>
-                <li>✅ No sharp waves, spikes, or bursts</li>
-                <li>✅ Entropy 0.4 - 0.8 (reasonably random)</li>
-                <li>✅ SNR {`>`} 5 dB (clear signal)</li>
+        <section className="py-16 mt-12 border-t border-gray-200">
+          <h2 className="text-3xl font-black uppercase tracking-tight mb-12">Quick Reference</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 p-8 rounded-lg">
+              <p className="text-lg font-black text-black mb-6 uppercase tracking-tight">Normal EEG</p>
+              <ul className="space-y-3 text-gray-700">
+                <li>— Regular, symmetric patterns both sides</li>
+                <li>— 8-12 Hz alpha rhythm when eyes closed</li>
+                <li>— 10-50 μV amplitude</li>
+                <li>— No sharp waves, spikes, or bursts</li>
+                <li>— Entropy 0.4 - 0.8</li>
+                <li>— SNR {`>`} 5 dB</li>
               </ul>
             </div>
-            <div className="bg-white rounded-lg p-6 border-2 border-red-200">
-              <p className="text-lg font-black text-red-700 mb-4">⚠️ Signs of ABNORMAL EEG</p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>🚨 Sharp waves or spike patterns</li>
-                <li>🚨 Amplitude {`>`}300 μV (too high)</li>
-                <li>🚨 Focal slowing in one region</li>
-                <li>🚨 3 Hz spike-and-wave pattern</li>
-                <li>🚨 Entropy {`<`}0.2 (too regular/repetitive)</li>
-                <li>🚨 Asymmetry between left and right brain</li>
+            <div className="bg-black text-white p-8 rounded-lg">
+              <p className="text-lg font-black mb-6 uppercase tracking-tight">Abnormal EEG</p>
+              <ul className="space-y-3 text-gray-300">
+                <li>— Sharp waves or spike patterns</li>
+                <li>— Amplitude {`>`}300 μV</li>
+                <li>— Focal slowing in one region</li>
+                <li>— 3 Hz spike-and-wave pattern</li>
+                <li>— Entropy {`<`}0.2</li>
+                <li>— Asymmetry between hemispheres</li>
               </ul>
             </div>
           </div>
         </section>
 
         {/* Footer */}
-        <section className="bg-white rounded-2xl p-8 border-2 border-gray-200">
-          <h3 className="text-xl font-black text-gray-900 mb-4">💡 Important Reminder</h3>
-          <div className="p-6 bg-blue-50 rounded-lg border-l-4 border-l-blue-500 space-y-3">
-            <p className="text-gray-800">
-              <strong>This tool is an AI-assisted screening aid, not a diagnostic tool.</strong> EEG interpretation requires trained neurologists and medical professionals. Always consult with healthcare providers for:
+        <section className="py-12 border-t border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-8">
+            <p className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">Important</p>
+            <p className="text-gray-700 leading-relaxed max-w-3xl">
+              <strong>This tool is an AI-assisted screening aid, not a diagnostic tool.</strong> EEG interpretation requires trained neurologists and medical professionals. Always consult with healthcare providers for clinical diagnosis, treatment decisions, and follow-up care.
             </p>
-            <ul className="space-y-2 text-sm text-gray-700 ml-4">
-              <li>• Clinical diagnosis and seizure classification</li>
-              <li>• Treatment decisions and medication</li>
-              <li>• Prognosis and follow-up care</li>
-              <li>• Any concerns about abnormal results</li>
-            </ul>
           </div>
         </section>
       </div>
