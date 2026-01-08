@@ -279,7 +279,7 @@ X1,X2,X3,...,X178,y
 ## References
 
 - [ILAE 2017 Seizure Classification](https://www.ilae.org/guidelines/definition-and-classification)
-- [UCI Epileptic Seizure Recognition Dataset]([https://archive.ics.uci.edu/ml/datasets/Epileptic+Seizure+Recognition](https://archive.ics.uci.edu/dataset/1134/beed:+bangalore+eeg+epilepsy+dataset))
+- [UCI Epileptic Seizure Recognition Dataset](https://archive.ics.uci.edu/dataset/1134/beed:+bangalore+eeg+epilepsy+dataset)
 - [EEG Fundamentals - ACNS Guidelines](https://www.acns.org/)
 
 ---
