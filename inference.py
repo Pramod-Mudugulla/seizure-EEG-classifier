@@ -62,9 +62,9 @@ def load_seizure_classifier():
 
 def get_gemini_client():
     """Initialize Gemini AI client for image analysis."""
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("LLMCODE")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY environment variable not set")
+        raise ValueError("LLMCODE environment variable not set")
     return genai.Client(api_key=api_key)
 
 

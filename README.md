@@ -81,7 +81,7 @@ NeuroDetect analyzes EEG (Electroencephalogram) signals to detect and classify s
    
    Create `.env.local` in the project root:
    ```env
-   VITE_GEMINI_API_KEY=your_gemini_api_key_here
+   VITE_LLMCODE=your_LLMCODE_here
    ```
 
 ---
