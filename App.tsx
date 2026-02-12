@@ -95,7 +95,8 @@ const App: React.FC = () => {
       }
     } catch (err) {
       console.error(err);
-      setError('Analysis failed. Check your connection or API key.');
+      const errorMessage = err instanceof Error ? err.message : 'Analysis failed. Check your connection or API key.';
+      setError(errorMessage);
     } finally {
       setIsAnalyzing(false);
     }

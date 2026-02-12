@@ -308,7 +308,25 @@ def analyze_csv_signal(values: list) -> dict:
     if not values or len(values) == 0:
         raise ValueError("No values provided for analysis")
     
-    values_np = np.array(values, dtype=float)
+    try:
+        values_np = np.array(values, dtype=float)
+    except (ValueError, TypeError):
+        raise ValueError("Invalid data format. Please upload a CSV file with numerical EEG signal values.")
+    
+    # Validate that the data looks like EEG signal
+    # EEG values are typically in the range of -500 to +500 microvolts
+    # but can occasionally exceed this in extreme cases
+    mean_val = float(np.mean(values_np))
+    max_val = float(np.max(np.abs(values_np)))
+    
+    # If all values are zero or very similar, it's likely not valid EEG data
+    if np.std(values_np) < 0.01:
+        raise ValueError("Signal shows no variation. Please ensure you uploaded a valid EEG data file with actual signal values.")
+    
+    # If values are extremely large (> 10000), likely not EEG data
+    if max_val > 10000:
+        raise ValueError(f"Signal amplitude ({max_val:.1f}µV) is unusually high for EEG. Please verify you uploaded the correct EEG data file.")
+    
     logger.info(f"Processing EEG signal: {len(values_np)} samples")
     
     # Extract signal features
@@ -381,6 +399,84 @@ def analyze_csv_signal(values: list) -> dict:
     }
 
 
+def validate_eeg_image(base64_image: str) -> tuple[bool, str]:
+    """
+    Validate if the uploaded image is an EEG waveform.
+    Returns (is_valid, message)
+    """
+    logger.info("Validating if image is an EEG waveform...")
+    
+    try:
+        client = get_gemini_client()
+        
+        # Parse data URL and extract mime type
+        mime_type = "image/jpeg"
+        if "," in base64_image:
+            header, base64_data = base64_image.split(",", 1)
+            if ":" in header and ";" in header:
+                mime_type = header.split(":")[1].split(";")[0]
+        else:
+            base64_data = base64_image
+        
+        # Decode base64 to binary
+        image_bytes = base64.b64decode(base64_data)
+        
+        # Ask Gemini to validate if this is an EEG image
+        validation_prompt = """You are an expert in EEG signal analysis. Look at this image and determine if it is an EEG (electroencephalogram) waveform.
+
+EEG images have these characteristics:
+- Graph/plot format showing waveforms over time
+- Multiple channels or a single channel trace
+- Time axis (horizontal) and amplitude/voltage axis (vertical)
+- Wave patterns representing electrical brain activity
+- May have labels like "Fp1", "F3", "C3", "P3", "O1", "Fz", "Cz", "Pz", "Oz", "F4", "C4", "P4", "O2", "Fp2" (channel names)
+- Contains rhythmic patterns typical of brain waves
+
+DO NOT accept:
+- Photos of people, animals, objects, scenes
+- Medical images that are not EEG (CT, MRI, X-ray, ultrasound, etc.)
+- Drawings, artwork, or random images
+
+Respond with a JSON object:
+{
+    "isEEG": true or false,
+    "reason": "Brief explanation"
+}"""
+        
+        response = client.models.generate_content(
+            model="gemini-3-flash-preview",
+            contents=[
+                types.Content(
+                    parts=[
+                        types.Part.from_text(text=validation_prompt),
+                        types.Part.from_bytes(
+                            data=image_bytes,
+                            mime_type=mime_type
+                        )
+                    ]
+                )
+            ],
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json"
+            )
+        )
+        
+        validation_result = json.loads(response.text)
+        is_eeg = validation_result.get("isEEG", False)
+        reason = validation_result.get("reason", "")
+        
+        if is_eeg:
+            logger.info("Image validated as EEG waveform")
+            return True, "Valid EEG image"
+        else:
+            logger.warning(f"Image validation failed: {reason}")
+            return False, f"This image does not appear to be an EEG waveform. {reason} Please upload a valid EEG signal image or CSV data file."
+            
+    except Exception as e:
+        logger.error(f"Error during image validation: {e}")
+        raise ValueError("Could not validate image format. Please ensure it is a valid image file.")
+
+
 def analyze_image_with_gemini(base64_image: str) -> dict:
     """
     Analyze EEG image using Gemini AI vision model.
@@ -389,6 +485,12 @@ def analyze_image_with_gemini(base64_image: str) -> dict:
     the LSTM model requires numerical signal data.
     """
     logger.info("Processing EEG image with Gemini AI...")
+    
+    # Validate that the image is an EEG waveform
+    is_valid, validation_message = validate_eeg_image(base64_image)
+    if not is_valid:
+        raise ValueError(validation_message)
+    
     client = get_gemini_client()
     
     # Parse data URL and extract mime type
